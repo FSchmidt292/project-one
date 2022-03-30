@@ -10,15 +10,26 @@
 <body>
     <header>
         <h1>Soundwavez: Audio visualizer</h1>
-    <div id="search-history">
-        
-    </div>
-        <p>Enter in the artist that you're listening to, and we will provide you an image!</p>
-    <div id="container">
-        <textarea class="artist" placeholder="Enter Artist Here!"></textarea>
-
-    </div>
     </header>
+    <section id="search">
+        <div id="search-history">
+        
+        </div>
+            <p>Enter in the artist that you're listening to, and we will provide you an image!</p>
+        <textarea class="artist" placeholder="Enter Artist Here!"></textarea>
+    </section>
+    <section class="image-display">
+        <h2>Artist</h2>
+        <container id="image">
+
+        </container>
+    </section>
+    <section class="previous-wavez">
+        <h2>Previous Wavez</h2>
+        <ul class="prev-results">
+
+        </ul>
+    </section>
     <script src="assets\script.js"></script>
 </body>
 </html>
