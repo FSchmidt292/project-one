@@ -1,15 +1,20 @@
+var artistNameEl = document.querySelector("#artist-name");
+var artistSearchForm = document.querySelector("#artist-search");
+var currSearchEl = document.querySelector("#currSearch");
+
+var imageUrl = "";
 
 //Initial API call. Will return album ID's of user input artist to be passed
 //through the genreCall method
-var artistCall = function(){
+var artistCall = function(artist){
     //TODO replace the query with a user input dynamic response
-    var apiUrl = `https://api.deezer.com/search?q=metallica`;
+    var apiUrl = `https://api.deezer.com/search?q=${artist}`;
 
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
             response.json().then(function(data) {
                 //console.log(data);
-                var albumId = data.data[1].album.id;
+                var albumId = data.data[0].album.id;
                 console.log(albumId);
                 genreCall(albumId);
             })
@@ -47,8 +52,10 @@ var imageSearch = function(genre) {
                 var photoId = data.photos.photo[rand].id;
                 var secret = data.photos.photo[rand].secret;
 
-                var imageUrl = `https://live.staticflickr.com/${serverId}/${photoId}_${secret}.jpg`
+                imageUrl = "";
+                imageUrl = `https://live.staticflickr.com/${serverId}/${photoId}_${secret}.jpg`
                 console.log(imageUrl);
+                currSearchEl.setAttribute("src", imageUrl);
             })
         }
     })
@@ -60,8 +67,12 @@ the calls to api will happen and we will receive a URL for an image, which will 
 we will also pull the information entered into the text field area and save it in local storage and use it to create a link to the URL that was pulled with that search
 by innerHTML-ing it to the the UL for past searches. 
 */
-function generateImage(){
-    getElementById
+function generateImage(event){
+    event.preventDefault();
+
+    var search = artistNameEl.value;
+
+    artistCall(search);
   }; 
   
-  document.getElementById("btn ").addEventListener("click", generateImage)
+artistSearchForm.addEventListener("submit", generateImage);
