@@ -3,6 +3,11 @@
     flex-wrap: wrap;
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
 header{
 text-align: center;
 display: flex;
