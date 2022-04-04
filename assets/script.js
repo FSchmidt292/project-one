@@ -73,16 +73,25 @@ function generateImage(event){
     var search = artistNameEl.value;
 
     artistCall(search);
-    var p = document.getElementById('artist-id');
+    p = document.getElementById('artist-id');
+    $("#artist-id").empty();
     p.innerHTML += search;
   }; 
 
 $(".save-btn").on("click", function(){
-    var artist = JSON.stringify($(this).siblings("p"));
-    var img = JSON.stringify($(this).siblings("src"));
+ 
+    var artist = ""
+    var img = ""
+
+    artist = $("#artist-id").text();
+    img = $("#currSearch").attr("src");
     localStorage.setItem("artist", artist);
     localStorage.setItem("img", img);
-$(".prev-results").append("<li><a href src='"+JSON.stringify(JSON.parse(localStorage.getItem(img)))+"' target= blank "+JSON.stringify(JSON.parse(localStorage.getItem(artist)))+"</a>")
+
+    console.log(artist);
+    console.log(img);
+
+$(".prev-results").append("<li><a href src='"+img+"' target= blank>"+artist+"</a>")
 
 });
   
