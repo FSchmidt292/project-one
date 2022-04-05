@@ -46,7 +46,7 @@ var imageSearch = function(genre) {
     fetch(apiUrl).then(function(response) {
         if(response.ok) {
             response.json().then(function(data) {
-                //console.log(data);
+                console.log(data);
                 var rand = Math.floor(Math.random() * 500);
                 var serverId = data.photos.photo[rand].server;
                 var photoId = data.photos.photo[rand].id;
