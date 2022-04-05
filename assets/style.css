@@ -5,14 +5,21 @@
 
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    border: 20px solid burlywood;
+    border-style: ridge;
+    padding: 5px;
+    margin: 20px;
+    color: rgb(223, 115, 250);
+   background-color: lightgrey;
 }
 
 header{
 text-align: center;
 display: flex;
 flex-wrap: wrap;
-width: 200px;
+width: 1825px;
+margin-bottom: 150px;
 border: 15px solid burlywood;
 border-style: ridge;
 padding: 5px;
@@ -23,6 +30,7 @@ color: rgb(223, 115, 250);
 
 .meaningless{
     width: 535px;
+    margin-left: 200px;
     border: 7px solid burlywood;
     padding: 2px;
     border-style: ridge;
