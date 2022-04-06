@@ -1,6 +1,7 @@
 var artistNameEl = document.querySelector("#artist-name");
 var artistSearchForm = document.querySelector("#artist-search");
 var currSearchEl = document.querySelector("#currSearch");
+var previousWavezEl = document.querySelector(".previous-wavez");
 
 var imageUrl = "";
 
@@ -41,7 +42,7 @@ var genreCall = function(albumId) {
 
 //Last API call that generates a random image from the flickr website
 var imageSearch = function(genre) {
-    var apiUrl = `https://www.flickr.com/services/rest?method=flickr.photos.search&api_key=bdf1b34a751721c09d026be91eb2c0c5&tags=${genre}&safe_search=1&per_page=500&format=json&nojsoncallback=1`;
+    var apiUrl = `https://www.flickr.com/services/rest?method=flickr.photos.search&api_key=bdf1b34a751721c09d026be91eb2c0c5&tags=${genre}&safe_search=1&per_page=500&sort=relevance&format=json&nojsoncallback=1`;
 
     fetch(apiUrl).then(function(response) {
         if(response.ok) {
@@ -73,6 +74,40 @@ function generateImage(event){
     var search = artistNameEl.value;
 
     artistCall(search);
+    p = document.getElementById('artist-id');
+    $("#artist-id").empty();
+    p.innerHTML += search;
   }; 
+
+//Save button logic, dynamically creates an additional button to be put in the previous wavez section
+$(".save-btn").on("click", function(){
+    var previousWavez = document.createElement("button");
+
+    var artist = ""
+    var img = ""
+
+    artist = $("#artist-id").text();
+    img = $("#currSearch").attr("src");
+
+    previousWavez.textContent = `${artist}`;
+    previousWavez.setAttribute("data-artist", `${img}`);
+
+    localStorage.setItem("artist", artist);
+    localStorage.setItem("img", img);
+
+    console.log(artist);
+    console.log(img);
+
+$(".prev-results").append(previousWavez);
+});
+
+//Handles the previousWaves button logic
+var previousWavezHandler = function(event) {
+    var searchAgain = event.target.getAttribute("data-artist");
+
+    currSearchEl.setAttribute("src", "");
+    currSearchEl.setAttribute("src", searchAgain);
+}
   
 artistSearchForm.addEventListener("submit", generateImage);
+previousWavezEl.addEventListener("click", previousWavezHandler);
