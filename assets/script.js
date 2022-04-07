@@ -90,7 +90,8 @@ $(".save-btn").on("click", function(){
     img = $("#currSearch").attr("src");
 
     previousWavez.textContent = `${artist}`;
-    previousWavez.setAttribute("data-artist", `${img}`);
+    previousWavez.setAttribute("data-img", `${img}`);
+    previousWavez.setAttribute("data-artist", `${artist}`);
 
     localStorage.setItem("artist", artist);
     localStorage.setItem("img", img);
@@ -103,10 +104,15 @@ $(".prev-results").append(previousWavez);
 
 //Handles the previousWaves button logic
 var previousWavezHandler = function(event) {
-    var searchAgain = event.target.getAttribute("data-artist");
+    if (event.target.getAttribute("data-artist")) {
+        var imgRecall = event.target.getAttribute("data-img");
+        var artistRecall = event.target.getAttribute("data-artist");
 
-    currSearchEl.setAttribute("src", "");
-    currSearchEl.setAttribute("src", searchAgain);
+        p.innerHTML = artistRecall;
+
+        currSearchEl.setAttribute("src", "");
+        currSearchEl.setAttribute("src", imgRecall);
+    };
 }
   
 artistSearchForm.addEventListener("submit", generateImage);
