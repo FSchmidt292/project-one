@@ -109,11 +109,9 @@ var load = function(){
     //get info saved in local storage
     artistSaveData = JSON.parse(localStorage.getItem('artist'));
     imgSaveData = JSON.parse(localStorage.getItem('img'));
-    //loop through these arrays to re-generate the images.
-    //looping thorugh backwards so that they show up the same way they came in
     artists.push(artistSaveData);
     waves.push(imgSaveData);
-for (i = artists.length; i >= 0; i--) {
+for (i = 0; i <= artists.length-1; i++) {
     //create the button
     var previousWavez = document.createElement("button");
     //reassign the artist and img variables locally
@@ -123,7 +121,6 @@ for (i = artists.length; i >= 0; i--) {
     previousWavez.textContent = `${artist}`;
     previousWavez.setAttribute("data-artist", `${img}`);
 $(".prev-results").append(previousWavez);
-   
 }};
 
 //Handles the previousWaves button logic
