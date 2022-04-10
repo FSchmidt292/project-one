@@ -95,14 +95,14 @@ $(".save-btn").on("click", function(){
     previousWavez.textContent = `${artist}`;
     previousWavez.setAttribute("data-artist", `${img}`);
 
-  
-    
     localStorage.setItem("artist", JSON.stringify(artists));
     localStorage.setItem("img", JSON.stringify(waves));
 
+    console.log(img.valueOf);
+
 $(".prev-results").append(previousWavez);
 });
-function load(){
+var load = function(){
     //get info saved in local storage
     artistSaveData = JSON.parse(localStorage.getItem('artist'));
     imgSaveData = JSON.parse(localStorage.getItem('img'));
@@ -110,7 +110,7 @@ function load(){
     //looping thorugh backwards so that they show up the same way they came in
     artists.push(artistSaveData);
     waves.push(imgSaveData);
-for (i = 0; i < artists.length; i++) {
+for (i = artists.length-1; i >=0; i--) {
     //create the button
     var previousWavez = document.createElement("button");
     //reassign the artist and img variables locally
@@ -119,13 +119,8 @@ for (i = 0; i < artists.length; i++) {
 
     previousWavez.textContent = `${artist}`;
     previousWavez.setAttribute("data-artist", `${img}`);
-
-    console.log(artist);
-    console.log(img);
-    console.log(artists);
-    console.log(waves);
-}
-};
+   
+}};
 
 //Handles the previousWaves button logic
 var previousWavezHandler = function(event) {
