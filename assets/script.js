@@ -3,6 +3,9 @@ var artistSearchForm = document.querySelector("#artist-search");
 var currSearchEl = document.querySelector("#currSearch");
 var previousWavezEl = document.querySelector(".previous-wavez");
 
+var artists = []
+var waves = []
+
 var imageUrl = "";
 
 //Initial API call. Will return album ID's of user input artist to be passed
@@ -92,14 +95,37 @@ $(".save-btn").on("click", function(){
     previousWavez.textContent = `${artist}`;
     previousWavez.setAttribute("data-artist", `${img}`);
 
-    localStorage.setItem("artist", artist);
-    localStorage.setItem("img", img);
-
-    console.log(artist);
-    console.log(img);
+  
+    
+    localStorage.setItem("artist", JSON.stringify(artists));
+    localStorage.setItem("img", JSON.stringify(waves));
 
 $(".prev-results").append(previousWavez);
 });
+function load(){
+    //get info saved in local storage
+    artistSaveData = JSON.parse(localStorage.getItem('artist'));
+    imgSaveData = JSON.parse(localStorage.getItem('img'));
+    //loop through these arrays to re-generate the images.
+    //looping thorugh backwards so that they show up the same way they came in
+    artists.push(artistSaveData);
+    waves.push(imgSaveData);
+for (i = 0; i < artists.length; i++) {
+    //create the button
+    var previousWavez = document.createElement("button");
+    //reassign the artist and img variables locally
+    var artist = artistSaveData[i];
+    var img = imgSaveData[i];
+
+    previousWavez.textContent = `${artist}`;
+    previousWavez.setAttribute("data-artist", `${img}`);
+
+    console.log(artist);
+    console.log(img);
+    console.log(artists);
+    console.log(waves);
+}
+};
 
 //Handles the previousWaves button logic
 var previousWavezHandler = function(event) {
@@ -111,3 +137,5 @@ var previousWavezHandler = function(event) {
   
 artistSearchForm.addEventListener("submit", generateImage);
 previousWavezEl.addEventListener("click", previousWavezHandler);
+
+load();
