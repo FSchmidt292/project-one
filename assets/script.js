@@ -8,8 +8,9 @@ var imageUrl = "";
 //Initial API call. Will return album ID's of user input artist to be passed
 //through the genreCall method
 var artistCall = function(artist){
-    //TODO replace the query with a user input dynamic response
-    var apiUrl = `https://api.deezer.com/search?q=${artist}`;
+    //Uncomment deezer api call if heroku link does not work, required CORS workaround
+    //var apiUrl = `https://api.deezer.com/search?q=${artist}`;
+    var apiUrl = `https://cwru-p1-g2.herokuapp.com/search?q=${artist}`;
 
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
@@ -26,7 +27,9 @@ var artistCall = function(artist){
 //Secondary API call using the previously gathered artist album ID in order 
 //to retreive artists/album genre to pass through the imageSearch method
 var genreCall = function(albumId) {
-    var apiUrl = `https://api.deezer.com/album/${albumId}`;
+    //Uncomment deezer api call if heroku link does not work, required CORS workaround
+    //var apiUrl = `https://api.deezer.com/album/${albumId}`;
+    var apiUrl = `https://cwru-p1-g2.herokuapp.com/album/${albumId}`;
 
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
