@@ -106,13 +106,6 @@ $(".save-btn").on("click", function(){
 $(".prev-results").append(previousWavez);
 });
 var pers = function(){
-    //clear old data from array for load
-    /*while(artistSaveData > 0){
-        artistSaveData.pop();
-    }
-    while(imgSaveData > 0){
-        imgSaveData.pop();
-    }*/
     //get info saved in local storage
     artistSaveData = JSON.parse(localStorage.getItem('artist'));
     imgSaveData = JSON.parse(localStorage.getItem('img'));
