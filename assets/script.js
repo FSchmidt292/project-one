@@ -105,23 +105,62 @@ $(".save-btn").on("click", function(){
 
 $(".prev-results").append(previousWavez);
 });
-var load = function(){
+var pers = function(){
+    //clear old data from array for load
+    /*while(artistSaveData > 0){
+        artistSaveData.pop();
+    }
+    while(imgSaveData > 0){
+        imgSaveData.pop();
+    }*/
     //get info saved in local storage
     artistSaveData = JSON.parse(localStorage.getItem('artist'));
     imgSaveData = JSON.parse(localStorage.getItem('img'));
+    //on multiple saves, the browser will inject a full array into the img and artist variables,
+    //recursively looping through that array to print the single items of array.
+    var printArtist = function(arr) {
+        if ( typeof(arr) == "object") {
+            for (var i = 0; i < arr.length; i++) {
+                printArtist(arr[i]);
+            }
+        }
+        else artists.push(arr);
+    }
+    
+    printArtist(artistSaveData);
+    
+    var printImg = function(arra) {
+        if ( typeof(arra) == "object") {
+            for (var i = 0; i < arra.length; i++) {
+                printImg(arra[i]);
+            }
+        }
+        else waves.push(arra);
+    }
+    
+    printImg(imgSaveData);
+
     artists.push(artistSaveData);
     waves.push(imgSaveData);
-for (i = 0; i <= artists.length-1; i++) {
+for (i = 0; i <= 30; i++) {
     //create the button
     var previousWavez = document.createElement("button");
     //reassign the artist and img variables locally
-    var artist = artistSaveData[i];
-    var img = imgSaveData[i];
+    var artist = artists[i];
+    var img = waves[i];
+
+       //check for null and undefined fields as to not display error
+    if (artist === null || artist === undefined){
+        console.log("crisis averted")
+}else if (typeof(artist) =='object') {
+    console.log("crisis averted")
+
+}else{
 
     previousWavez.textContent = `${artist}`;
     previousWavez.setAttribute("data-artist", `${img}`);
 $(".prev-results").append(previousWavez);
-}};
+}}};
 
 //Handles the previousWaves button logic
 var previousWavezHandler = function(event) {
@@ -134,4 +173,4 @@ var previousWavezHandler = function(event) {
 artistSearchForm.addEventListener("submit", generateImage);
 previousWavezEl.addEventListener("click", previousWavezHandler);
 
-load();
+pers();
