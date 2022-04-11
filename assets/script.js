@@ -94,7 +94,6 @@ $(".save-btn").on("click", function(){
 
     previousWavez.textContent = `${artist}`;
     previousWavez.setAttribute("data-artist", `${img}`);
-
     artists.push(artist)
     waves.push(img)
 
