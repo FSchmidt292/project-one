@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>soundwavez</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css">
     <link rel="stylesheet" href=".\assets\style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>  
 </head>
@@ -14,7 +15,7 @@
         <p class="meaningless">Enter in the artist that you're listening to, and we will provide you with a random image! Our program will match the vibe of the artist with an image, which is what makes up your wave!</br>
             If you like the image you can save it, but if you don't, hit the search again and we'll give you another!</p>
     </header>
-    <div class="grid-container">
+    <div class="grid-container h-75">
         <section id="search" class="grid-item grid-item-1">
             <form id="artist-search" class="searchbtn">
                 <label for="artist-name"></label>
@@ -30,9 +31,9 @@
                 <button type="button" class="save-btn">Save this Wave</button>
             </container>
         </section>
-        <section class="previous-wavez grid-item grid-item-3">
-            <h2>Previous Wavez</h2>
-            <ul class="prev-results">
+        <section class="previous-wavez grid-item grid-item-3 ">
+            <h2 class="text-center">Previous Wavez</h2>
+            <ul class="prev-results d-flex flex-column w-50">
 
             </ul>
         </section>
