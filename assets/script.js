@@ -65,7 +65,6 @@ var imageSearch = function(genre) {
     })
 }
 
-
 /*when generateImage is run:
 the calls to api will happen and we will receive a URL for an image, which will display in the center.
 we will also pull the information entered into the text field area and save it in local storage and use it to create a link to the URL that was pulled with that search
@@ -156,18 +155,14 @@ $(".prev-results").append(previousWavez);
 
 //Handles the previousWaves button logic
 var previousWavezHandler = function(event) {
-    if (event.target.getAttribute("data-artist")) {
-        var imgRecall = event.target.getAttribute("data-img");
-        var artistRecall = event.target.getAttribute("data-artist");
+    var searchAgain = event.target.getAttribute("data-artist");
 
-        p.innerHTML = artistRecall;
-
-        currSearchEl.setAttribute("src", "");
-        currSearchEl.setAttribute("src", imgRecall);
-    };
+    currSearchEl.setAttribute("src", "");
+    currSearchEl.setAttribute("src", searchAgain);
 }
   
 artistSearchForm.addEventListener("submit", generateImage);
 previousWavezEl.addEventListener("click", previousWavezHandler);
 
 pers();
+
